@@ -18,7 +18,8 @@ module.exports = {
     mumbai: {
       url: process.env.ALCHEMY_API_URL,
       accounts: [`0x${process.env.PRIVATE_KEY}`],
-      chainId: 80001, // Mumbai Testnet chain ID
+      // chainId: 80001, // Mumbai Testnet chain ID
+      chainId: 80002, // Amoy testnet
     }
   }
 };
