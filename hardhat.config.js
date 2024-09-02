@@ -11,15 +11,25 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   }
 });
 
+// const alchemy_url = "https://eth-sepolia.g.alchemy.com/v2/...";
+
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: "0.8.20",
+  defaultNetwork: "hardhat",
   networks: {
-    mumbai: {
-      url: process.env.ALCHEMY_API_URL,
-      accounts: [`0x${process.env.PRIVATE_KEY}`],
-      // chainId: 80001, // Mumbai Testnet chain ID
-      chainId: 80002, // Amoy testnet
-    }
+    hardhat: {
+    },
+    // sepolia: {
+    //   url: process.env.ALCHEMY_API_URL,
+    //   accounts: [`0x${process.env.PRIVATE_KEY}`],
+    //   chainId: 11155111,
+    // },
+    // mumbai: {
+    //   url: process.env.ALCHEMY_API_URL,
+    //   accounts: [`0x${process.env.PRIVATE_KEY}`],
+    //   // chainId: 80001, // Mumbai Testnet chain ID
+    //   chainId: 80002, // Amoy testnet
+    // }
   }
 };
