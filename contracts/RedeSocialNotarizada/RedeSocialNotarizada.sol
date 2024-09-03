@@ -52,7 +52,7 @@ contract RedeSocialNotarizada {
     * @dev Envia troco para o dono do perfil, se necessário. 
     */     
     function envia_troco() private {
-        uint256 valor = preco - msg.value;
+        uint256 valor = msg.value - preco;
 
         if (valor > 0){
             payable(msg.sender).transfer(valor);
