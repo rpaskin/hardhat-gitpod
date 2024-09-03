@@ -15,42 +15,62 @@ const precoInicial = 1234;
 
 describe(contractName, function () { 
     let RedeSocialNotarizada; 
-    let rsn; 
-    let dono; 
-    let endereco1; 
-    let endereco2; 
-    let enderecos; 
+    let contratoRSN; 
+    let dono, endereco1, mais_enderecos;
     
+    // Antes de cada teste:
     beforeEach(async function () { 
-        // Use the contractName variable to get the ContractFactory
+        // Crie e faça o deploy de um novo contrato
         RedeSocialNotarizada = await ethers.getContractFactory(contractName); 
-        [dono, endereco1, endereco2, ...enderecos] = await ethers.getSigners(); 
-        // Deploy a new contract before each test
-        rsn = await RedeSocialNotarizada.deploy(precoInicial); 
+        contratoRSN = await RedeSocialNotarizada.deploy(precoInicial); 
+
+        // pegue endereços dos potenciais assinadores
+        [dono, endereco1, ...mais_enderecos] = await ethers.getSigners();
     });
         
     describe("Deployment", function () {         
         it("Deve definir o dono correto e o preço no momento do deployment", async function () { 
-            // const donoBalance = await rsn.balanceOf(dono.address); 
-            // expect(await rsn.totalSupply()).to.equal(donoBalance); 
-
-            expect(await rsn.criador()).to.equal(dono.address);
-            expect(await rsn.preco()).to.equal(precoInicial);
+            expect(await contratoRSN.criador()).to.equal(dono.address);
+            expect(await contratoRSN.preco()).to.equal(precoInicial);
         }); 
 
-        it("Deve permitir que um usuário salve um perfil com o pagamento correto", async function () {
+        it("Deve permitir que um usuário salve um perfil, com o pagamento correto", async function () {
             const nomePerfil = "PerfilTeste";
-            await expect(rsn.connect(endereco1).guardar(nomePerfil, endereco1.address, { value: precoInicial }))
-              .to.emit(rsn, "Guardado")
+            await expect(contratoRSN.connect(endereco1).guardar(nomePerfil, endereco1.address, { value: precoInicial }))
+              .to.emit(contratoRSN, "Guardado")
               .withArgs(nomePerfil, endereco1.address);
         
-            const perfil = await rsn.registros(endereco1.address);
+            const perfil = await contratoRSN.registros(endereco1.address);
             expect(perfil.perfil).to.equal(nomePerfil);
             expect(perfil.quando_criado).to.be.greaterThan(0);
         });
 
+        it("Não deve permitir sobrescrever um perfil existente", async function () {
+          const nomePerfil = "PerfilTeste";
+          await contratoRSN.connect(endereco1).guardar(nomePerfil, endereco1.address, { value: precoInicial });
 
+          await expect(contratoRSN.connect(endereco1).guardar("OutroPerfil", endereco1.address, { value: precoInicial }))
+            .to.be.revertedWith("Um perfil ja esta guardado para este dono!");
+        });
 
+        it("Deve receber troco", async function () {
+          const nomePerfil = "PerfilTeste";
+          const pagamentoExtra = ethers.parseEther("2.0"); // 2 ether
+          const balanceAntes = await ethers.provider.getBalance(endereco1.address);
+          
+          const tx = await contratoRSN.connect(endereco1).guardar(nomePerfil, endereco1.address, { value: pagamentoExtra });
+          const receipt = await tx.wait();
+          
+          // Convert gasUsed to BigInt and multiply
+          const gasUsed = receipt.gasUsed * receipt.gasPrice;
+          const balanceDepois = await ethers.provider.getBalance(endereco1.address);
+          
+          // Ensure all values are BigInt in the calculation
+          const expectedBalance = balanceAntes - BigInt(precoInicial) - gasUsed;
+          
+          // Permitir uma tolerancia, por conta de flutuacao do gas
+          expect(balanceDepois).to.be.closeTo(expectedBalance, ethers.parseEther("0.01"));
+        });
     }); 
 });
 
