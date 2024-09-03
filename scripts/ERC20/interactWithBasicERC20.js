@@ -8,7 +8,7 @@ require('dotenv').config();
 
 const config = {
     apiKey: process.env.ALCHEMY_API_KEY,
-    network: Network.MATIC_MUMBAI,
+    network: Network.ETH_SEPOLIA,
 };
 const alchemy = new Alchemy(config);
 
