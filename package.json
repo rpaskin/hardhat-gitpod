@@ -10,14 +10,13 @@
   "author": "Tailor VJ <tailor.vj@gmail.com>",
   "license": "AGPL-3.0",
   "devDependencies": {
-    "@nomicfoundation/hardhat-ethers": "^3.0.5",
-    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
-    "ethers": "^6.11.1",
-    "hardhat": "^2.19.5",
+    "@nomicfoundation/hardhat-ethers": "^3.0.8",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "ethers": "^6.13.2",
+    "hardhat": "^2.22.10",
     "hardhat-network-helpers": "^0.0.1"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^5.0.1",
     "alchemy-sdk": "^3.1.2",
     "dotenv": "^16.4.1"
   }
