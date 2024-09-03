@@ -5,7 +5,7 @@ const contractName = "RedeSocialNotarizada";
 
 async function main() { 
     const [deployer] = await ethers.getSigners();
-    console.log("Deploying contracts with the account:", deployer.address);
+    console.log("Fazendo deploy com a conta:", deployer.address);
 
     const precoInicial = 1234;
 
