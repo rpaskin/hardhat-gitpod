@@ -4,7 +4,7 @@ Este projeto permite que você facilmente tenha um ambiente de desenvolvimento p
 
 Ele utiliza o serviço do https://Gitpod.io. 
 
-O código base utilizado está no repositório https://github.com/rpaskin/ticemtrilhas_blockchain, especificamente no [Módulo 2/RedeSocialNotarizada7](https://github.com/rpaskin/ticemtrilhas_blockchain/blob/main/Modulo%202/RedeSocialNotarizada7.sol).
+O código base utilizado está no repositório https://github.com/rpaskin/ticemtrilhas_blockchain, especificamente no [Módulo 2/RedeSocialNotarizada7](https://github.com/rpaskin/ticemtrilhas_blockchain/blob/main/Modulo2/RedeSocialNotarizada7.sol).
 
 # Crie o projeto no Gitpod
 
