@@ -19,7 +19,7 @@ O código base utilizado está no repositório https://github.com/rpaskin/ticemt
 1. Um package.json configurado com o necessário
 2. Um .gitpod.yml para executar o npm install
 3. Estas instrucões (README.md)
-4. Os /contracts, /scripts and /tests
+4. Os /contracts, /scripts e /tests
 
 A partir disto você pode desenvolver seus contratos inteligentes, incluindo testes.
 
