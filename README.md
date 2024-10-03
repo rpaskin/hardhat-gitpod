@@ -6,12 +6,19 @@ Ele utiliza o serviço do https://Gitpod.io.
 
 O código base utilizado está no repositório https://github.com/rpaskin/ticemtrilhas_blockchain, especificamente no [Módulo 2/RedeSocialNotarizada7](https://github.com/rpaskin/ticemtrilhas_blockchain/blob/main/Modulo2/RedeSocialNotarizada7.sol).
 
-# Crie o projeto no Gitpod
+# Opção 1: Utilize o Github Codespaces
+
+1. Acesse o repositório em https://github.com/rpaskin/hardhat-gitpod
+2. Crie uma conta ou utilize sua conta já existente.
+3. Clique em "Use this template" ou em "Code".
+4. Começe a utilizar o IDE.
+
+# Opção 2: Crie o projeto no Gitpod
 
 1. Acesse https://www.gitpod.io e crie uma conta.
 2. Selecione "Configure your own repository"(Configurar seu próprio repositório)
 3. Colar o endereço do repositório: https://github.com/rpaskin/hardhat-gitpod
-4. Começe a utilizar a IDE
+4. Começe a utilizar o IDE.
 
 
 # Começa do mais simples possível
